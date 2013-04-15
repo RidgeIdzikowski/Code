@@ -1,0 +1,43 @@
+const int analogPin0 = A0;
+const int analogPin1 = A1;
+const int analogPin2 = A2;
+const int speaker = 8;
+const int threshold = 100;
+const int threshold2 = 1;
+
+#include "pitches.h"
+
+void setup() {
+  pinMode(speaker, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int analogValue0 = analogRead(analogPin0);
+  int analogValue1 = analogRead(analogPin1);
+  int analogValue2 = analogRead(analogPin2);
+ 
+  if (analogValue0 < threshold2) {
+for (int thisNote = 0; thisNote < 8; thisNote++) {
+  tone(8,NOTE_C4,8);
+  noTone(8);
+  }
+  }
+  else {
+    digitalWrite(speaker,LOW);
+  }
+  if (analogValue1 < threshold) {
+for (int thisNote = 0; thisNote < 8; thisNote++) {
+  tone(8,NOTE_C6,8);
+  noTone(8);
+  }
+  }
+ 
+  if (analogValue2 < threshold2) {
+for (int thisNote = 0; thisNote < 8; thisNote++) {
+  tone(8,NOTE_C5,8);
+  noTone(8);
+  }
+  }
+  Serial.println(analogValue0);
+}
